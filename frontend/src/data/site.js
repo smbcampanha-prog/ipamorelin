@@ -1,7 +1,7 @@
 export const SITE = {
     name: "Hub Retatrutida",
     brand: "Suplementos Mais Baratos",
-    domain: "https://retatrutida.suplementosmaisbaratos.com.br",
+    domain: "https://www.suplementosmaisbaratos.com.br/retatrutida",
     whatsapp: "5521972232170",
     whatsappDisplay: "+55 21 97223-2170",
     defaultMsg:

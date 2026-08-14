@@ -60,7 +60,7 @@ const Hero = () => {
         <section data-testid="hero-section" className="relative flex min-h-[100svh] items-end overflow-hidden">
             <motion.div style={{ y, opacity }} className="absolute inset-0">
                 <img
-                    src="/assets/hero-neon.png"
+                    src={`${process.env.PUBLIC_URL}/assets/hero-neon.png`}
                     alt="Ilustração científica em neon azul: frasco e caneta injetável de peptídeo com escudo e molécula"
                     className="h-full w-full object-cover object-center"
                 />
@@ -277,7 +277,7 @@ const HonestMarket = () => (
                 <Reveal delay={0.1} className="float-slow">
                     <div className="relative overflow-hidden rounded-2xl border border-white/10">
                         <img
-                            src="/assets/hero-neon.png"
+                            src={`${process.env.PUBLIC_URL}/assets/hero-neon.png`}
                             alt="Arte neon azul representando proteção e pesquisa científica de peptídeos"
                             className="h-72 w-full object-cover"
                         />

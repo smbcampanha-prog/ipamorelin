@@ -62,7 +62,7 @@ function App() {
     return (
         <div className="App">
             <HelmetProvider>
-                <BrowserRouter>
+                <BrowserRouter basename={process.env.PUBLIC_URL || "/"}>
                     <Shell />
                 </BrowserRouter>
             </HelmetProvider>

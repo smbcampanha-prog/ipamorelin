@@ -62,7 +62,7 @@ export default function ArticlePage() {
 
             <article data-testid={`article-${article.slug}`} className="relative pt-32">
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] overflow-hidden">
-                    <img src="/assets/hero-neon.png" alt="" aria-hidden="true" className="h-full w-full object-cover opacity-25" />
+                    <img src={`${process.env.PUBLIC_URL}/assets/hero-neon.png`} alt="" aria-hidden="true" className="h-full w-full object-cover opacity-25" />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#030308]/60 via-[#030308]/85 to-[#030308]" />
                 </div>
 
