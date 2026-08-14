@@ -1,0 +1,111 @@
+{
+  "theme": "Dark Mode (Awwwards level)",
+  "language": "pt-BR",
+  "typography": {
+    "headings": {
+      "font": "Unbounded, Space Grotesk, or Syncopate",
+      "style": "Kinetic, bold, tight tracking, text reveal animations",
+      "scale": "text-4xl to text-6xl+ for Hero. Never exceed 6xl."
+    },
+    "body": {
+      "font": "Manrope or Outfit",
+      "style": "Geometric, highly readable, light font weight, low contrast against background"
+    },
+    "labels": {
+      "font": "JetBrains Mono or Roboto Mono",
+      "style": "Uppercase, tracking-[0.2em], used for data labels, technical specs, chapter numbers"
+    }
+  },
+  "colors": {
+    "background": {
+      "primary": "#030308",
+      "secondary": "#0A0A10"
+    },
+    "neon_blue": {
+      "primary": "#00A3FF",
+      "secondary": "#38BDF8",
+      "glow": "drop-shadow-[0_0_15px_rgba(0,163,255,0.5)]"
+    },
+    "gold_accent": {
+      "primary": "#D4AF37",
+      "hover": "#E5C158",
+      "usage": "Exclusively for Primary CTAs (WhatsApp Evaluation) and rare accents"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#9CA3AF"
+    },
+    "glass": {
+      "background": "bg-white/5",
+      "border": "border-white/10",
+      "blur": "backdrop-blur-xl"
+    }
+  },
+  "visual_enhancers": {
+    "hero": "Cinetic typography with line-by-line reveal (masked). Subtle parallax effect with neon vial background.",
+    "marquee": "Slow editorial marquee with technical terms, low contrast pale background/dark text or kinetic outline text.",
+    "panels": "Glass-morphism cards for content with LED-edge lighting (1px blue/white border on top/left).",
+    "infographics": "Vector-style scientific data viz using mono-spaced labels, representing GLP-1, GIP, Glucagon triple agonism.",
+    "chapters": "Numbered manifesto-style chapters (01, 02, 03...)"
+  },
+  "components": {
+    "hero": "Framer Motion line-by-line reveal, Lenis parallax.",
+    "marquee": "react-fast-marquee or framer-motion infinite scroll.",
+    "cards": "Glassmorphism cards with semantic backlinks.",
+    "cta": "Golden button with glowing effect, pulse animation, and WhatsApp icon."
+  },
+  "grids_and_layouts": {
+    "strategy": "Bento grid protocol, asymmetrical layouts for marketing feel. Dense data clusters for scientific stats.",
+    "spacing": "Generous spacing. p-8 to p-12 for containers, huge gaps for sections (py-24)."
+  },
+  "motion": {
+    "scroll": "Lenis for smooth scrolling.",
+    "reveal": "Framer Motion for scroll reveals, text masking, line-by-line rendering.",
+    "micro": "Hover states with subtle translations (-translate-y-1) and glow enhancements."
+  },
+  "accessibility": {
+    "contrast": "APCA/WCAG AA compliant. High contrast on text, focus states clearly defined with neon blue rings.",
+    "motion": "Respect prefers-reduced-motion."
+  },
+  "images": [
+    {
+      "url": "https://images.unsplash.com/photo-1594047752131-1ec0a6dfa4fc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHwxfHxuZW9uJTIwYmx1ZSUyMG1vbGVjdWxlfGVufDB8fHx8MTc4NjY3MTcxMXww&ixlib=rb-4.1.0&q=85",
+      "category": "hero_background_fallback",
+      "description": "Neon blue molecule structural line art, useful as a fallback for the 3D vial."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1782926017061-6dca357718dc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHw0fHxzY2llbnRpZmljJTIwZGF0YSUyMHZpc3VhbGl6YXRpb24lMjBkYXJrfGVufDB8fHx8MTc4NjY3MTcxMXww&ixlib=rb-4.1.0&q=85",
+      "category": "scientific_data_bg",
+      "description": "Abstract quantum physics equations, great for the clinical studies background or infographic sections."
+    },
+    {
+      "url": "https://images.pexels.com/photos/7578798/pexels-photo-7578798.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "category": "consultation_cta",
+      "description": "Medical consultation context image for the WhatsApp evaluation section."
+    }
+  ],
+  "3d_libraries": {
+    "recommendation": "Use framer-motion and simple CSS 3D transforms for parallax. For floating particles, TSParticles is recommended for subtle data point visual effects."
+  },
+  "instructions_to_main_agent": [
+    "Follow the Dark underground neon aesthetic strictly: background #030308, neon blue (#00A3FF) accents, and gold (#D4AF37) strictly for the WhatsApp CTA.",
+    "Implement 10 pages: Home + 9 satellite pages (O que é, Como funciona, Estudos clínicos, vs Mounjaro, Efeitos colaterais, Status regulatório ANVISA, Dosagem, Consultoria, FAQ) using React Router.",
+    "Build a kinetic hero section with line-by-line text reveal using framer-motion. Implement subtle parallax scrolling on the hero background.",
+    "Create a slow editorial marquee using Framer Motion or react-fast-marquee.",
+    "Design numbered manifesto chapters (01, 02, 03...).",
+    "Use glass-morphism panels for scientific content cards, featuring semantic backlinks to the satellite pages.",
+    "Develop custom vector infographics to explain the GLP-1/GIP/Glucagon triple agonist mechanism.",
+    "Apply smooth scrolling using Lenis.",
+    "Use 'lucide-react' for molecular/vector SVG iconography.",
+    "Ensure all interactive elements have 'data-testid' attributes.",
+    "Write code in .js (not .tsx) as the environment is standard JS."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Do not use generic centered layouts. Use asymmetrical, high-tension grids.",
+    "Create depth with layered glassmorphism and subtle LED edge lighting (1px borders).",
+    "Never use pure transparent backgrounds for overlays; always use a blur + tint (e.g., bg-black/60 backdrop-blur-xl).",
+    "Do not use a universal 'transition: all'. Apply specific transitions.",
+    "Implement micro-animations on all hover states.",
+    "Use 'sonner' for any required toast notifications."
+  ]
+}

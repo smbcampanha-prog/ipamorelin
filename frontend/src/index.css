@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 240 33% 2%;
+        --foreground: 0 0% 96%;
+        --card: 240 20% 5%;
+        --card-foreground: 0 0% 96%;
+        --popover: 240 20% 5%;
+        --popover-foreground: 0 0% 96%;
+        --primary: 201 100% 50%;
+        --primary-foreground: 240 33% 2%;
+        --secondary: 240 15% 10%;
+        --secondary-foreground: 0 0% 96%;
+        --muted: 240 15% 10%;
+        --muted-foreground: 220 9% 60%;
+        --accent: 45 65% 52%;
+        --accent-foreground: 240 33% 4%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 240 12% 14%;
+        --input: 240 12% 14%;
+        --ring: 201 100% 50%;
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+    html.lenis,
+    html.lenis body {
+        height: auto;
+    }
+    .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+    }
+    body {
+        background-color: #030308;
+        color: #e5e7eb;
+        font-family: "Manrope", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+    }
+    ::selection {
+        background: #d4af37;
+        color: #030308;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #030308;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #16202e;
+        border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #00a3ff;
+    }
+}
+
+@layer components {
+    .font-display {
+        font-family: "Unbounded", sans-serif;
+    }
+    .font-mono-tech {
+        font-family: "JetBrains Mono", monospace;
+    }
+    .glass-panel {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    .led-edge {
+        position: relative;
+    }
+    .led-edge::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 163, 255, 0.65),
+            transparent 35%,
+            transparent 65%,
+            rgba(0, 163, 255, 0.2)
+        );
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+    }
+    .text-neon {
+        color: #38bdf8;
+        text-shadow: 0 0 22px rgba(0, 163, 255, 0.55);
+    }
+    .gold-grad {
+        background: linear-gradient(135deg, #e5c158, #d4af37 45%, #a9842a);
+    }
+    .grid-bg {
+        background-image:
+            linear-gradient(rgba(0, 163, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 163, 255, 0.05) 1px, transparent 1px);
+        background-size: 56px 56px;
+    }
+    .outline-text {
+        -webkit-text-stroke: 1px rgba(56, 189, 248, 0.35);
+        color: transparent;
+    }
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+.marquee-track {
+    animation: marquee 48s linear infinite;
+    will-change: transform;
+}
+
+@keyframes dash-flow {
+    to {
+        stroke-dashoffset: -24;
+    }
+}
+.dash-flow {
+    stroke-dasharray: 6 6;
+    animation: dash-flow 1.6s linear infinite;
+}
+
+@keyframes pulse-gold {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.45);
+    }
+    50% {
+        box-shadow: 0 0 0 14px rgba(212, 175, 55, 0);
+    }
+}
+.pulse-gold {
+    animation: pulse-gold 2.6s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-14px);
+    }
+}
+.float-slow {
+    animation: float-slow 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track,
+    .dash-flow,
+    .pulse-gold,
+    .float-slow {
+        animation: none;
+    }
+}
