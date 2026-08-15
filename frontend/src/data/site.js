@@ -19,3 +19,4 @@ export const MARKET = HUB.market;
 export const HOME_SEO = HUB.homeSeo;
 export const FAQ_PAGE = HUB.faqPage;
 export const FAQS = HUB.faqs;
+export const INLINE_LINKS = HUB.inlineLinks;

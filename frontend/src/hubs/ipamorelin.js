@@ -33,6 +33,16 @@ export const HUB = {
     ],
     disclaimer:
         "Conteúdo exclusivamente educacional. A ipamorelin não possui registro na ANVISA nem aprovação terapêutica em nenhum país. Este site não vende nem intermedia peptídeos. Consulte sempre um médico.",
+    inlineLinks: [
+        { term: "ipamorelin", to: "/", title: "Ipamorelin — Hub Científico" },
+        { term: "sermorelin", to: "/ipamorelin-vs-sermorelin", title: "ipamorelin vs sermorelin" },
+        { term: "preço oficial", to: "/ipamorelin-preco", title: "ipamorelin preço" },
+        { term: "onde comprar", to: "/onde-comprar-ipamorelin", title: "ipamorelin onde comprar" },
+        { term: "efeitos colaterais", to: "/efeitos-colaterais", title: "ipamorelin efeitos colaterais" },
+        { term: "mecanismo", to: "/como-funciona", title: "ipamorelin como funciona" },
+        { term: "consultoria educacional", to: "/consultoria-peptideos", title: "consultoria em peptídeos" },
+        { term: "CJC-1295", to: "/ipamorelin-vs-sermorelin", title: "ipamorelin e CJC-1295" },
+    ],
     marquee: [
         "GHS-R1A", "GH PULSÁTIL", "IGF-1", "PENTAPEPTÍDEO", "SECRETAGOGO SELETIVO",
         "SEM CORTISOL", "WADA — CLASSE S2", "SEM REGISTRO ANVISA", "ESTUDOS FASE 1/2",

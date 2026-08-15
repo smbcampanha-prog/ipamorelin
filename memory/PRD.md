@@ -29,6 +29,7 @@ O app é multi-hub: o mesmo código serve os dois sites. O conteúdo muda por ho
 - CTAs dourados com glow pulsante reforçado (anéis + halo + brilho).
 - Melhorias SEO/GEO orgânico: seção "Referências e fontes externas" (PubMed, ClinicalTrials.gov, ANVISA, WADA) em todos os artigos dos dois hubs; datePublished/dateModified no schema MedicalWebPage.
 - Arquitetura multi-hub em `src/hubs/` (retatrutida.js, ipamorelin.js, seletor index.js); build por hub via `scripts/apply-hub.js`.
+- Link juice interno: backlinks semânticos no corpo dos artigos (primeira ocorrência da keyword principal aponta para a home; termos secundários apontam para os capítulos), 1 link por destino por página, sem auto-link.
 - Badge Emergent removido. Versão em espanhol revertida a pedido do usuário.
 
 ## Observações de handoff

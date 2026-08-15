@@ -5,8 +5,32 @@ import { Reveal } from "../components/Reveal";
 import { GoldButton } from "../components/GoldButton";
 import { MechanismDiagram } from "../components/MechanismDiagram";
 import { ARTICLES, getArticle } from "../data/articles";
-import { SITE, DRUG, DISCLAIMER } from "../data/site";
+import { SITE, DRUG, DISCLAIMER, INLINE_LINKS } from "../data/site";
 import NotFound from "./NotFound";
+
+const linkify = (text, used) => {
+    for (const spec of INLINE_LINKS) {
+        if (used.has(spec.to)) continue;
+        const idx = text.toLowerCase().indexOf(spec.term.toLowerCase());
+        if (idx === -1) continue;
+        used.add(spec.to);
+        return (
+            <>
+                {text.slice(0, idx)}
+                <Link
+                    to={spec.to}
+                    title={spec.title}
+                    data-testid={`inline-link-${spec.to === "/" ? "home" : spec.to.slice(1)}`}
+                    className="font-semibold text-sky-300 underline decoration-sky-400/40 underline-offset-4 transition-colors duration-300 hover:text-sky-200 hover:decoration-sky-300"
+                >
+                    {text.slice(idx, idx + spec.term.length)}
+                </Link>
+                {linkify(text.slice(idx + spec.term.length), used)}
+            </>
+        );
+    }
+    return text;
+};
 
 const articleJsonLd = (a) => ({
     "@context": "https://schema.org",
@@ -52,6 +76,7 @@ export default function ArticlePage() {
     if (!article) return <NotFound />;
 
     const related = ARTICLES.filter((a) => a.slug !== slug).slice(0, 3);
+    const usedInline = new Set([`/${article.slug}`]);
 
     return (
         <>
@@ -85,7 +110,7 @@ export default function ArticlePage() {
                             {article.title}
                         </h1>
                         <p className="mt-6 max-w-2xl text-base leading-relaxed text-gray-300 sm:text-lg">
-                            {article.lede}
+                            {linkify(article.lede, usedInline)}
                         </p>
                         <p className="font-mono-tech mt-6 flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-gray-500">
                             <Clock3 className="h-3.5 w-3.5" /> Leitura: {article.readTime} · Atualizado em jul/2026
@@ -163,7 +188,7 @@ export default function ArticlePage() {
                                     </h2>
                                     {s.p.map((para, j) => (
                                         <p key={j} className="mt-4 text-base leading-relaxed text-gray-400">
-                                            {para}
+                                            {linkify(para, usedInline)}
                                         </p>
                                     ))}
                                 </section>

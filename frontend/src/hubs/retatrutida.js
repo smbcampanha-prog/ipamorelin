@@ -33,6 +33,16 @@ export const HUB = {
     ],
     disclaimer:
         "Conteúdo exclusivamente educacional. A retatrutida não possui registro na ANVISA nem aprovação em nenhum país. Este site não vende nem intermedia medicamentos. Consulte sempre um médico.",
+    inlineLinks: [
+        { term: "retatrutida", to: "/", title: "Retatrutida — Hub Científico" },
+        { term: "Mounjaro", to: "/retatrutida-vs-mounjaro", title: "retatrutida ou mounjaro" },
+        { term: "preço oficial", to: "/retatrutida-preco", title: "retatrutida preço" },
+        { term: "onde comprar", to: "/onde-comprar-retatrutida", title: "retatrutida onde comprar" },
+        { term: "ensaios clínicos", to: "/estudos-clinicos", title: "retatrutida estudos clínicos" },
+        { term: "efeitos colaterais", to: "/efeitos-colaterais", title: "retatrutida efeitos colaterais" },
+        { term: "mecanismo", to: "/como-funciona", title: "retatrutida como funciona" },
+        { term: "consultoria educacional", to: "/consultoria-peptideos", title: "consultoria em peptídeos" },
+    ],
     marquee: [
         "GLP-1", "GIP", "GLUCAGONA", "AGONISTA TRIPLO", "LY3437943", "NEJM 2023",
         "TRIUMPH-4", "FASE 3", "-24,2% EM 48 SEMANAS", "PEPTÍDEO EXPERIMENTAL",
