@@ -149,10 +149,16 @@
 @keyframes pulse-gold {
     0%,
     100% {
-        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.45);
+        box-shadow:
+            0 0 0 0 rgba(212, 175, 55, 0.5),
+            0 0 18px rgba(212, 175, 55, 0.35);
+        filter: brightness(1);
     }
     50% {
-        box-shadow: 0 0 0 14px rgba(212, 175, 55, 0);
+        box-shadow:
+            0 0 0 16px rgba(212, 175, 55, 0),
+            0 0 52px rgba(212, 175, 55, 0.8);
+        filter: brightness(1.14);
     }
 }
 .pulse-gold {

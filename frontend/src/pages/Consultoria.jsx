@@ -38,7 +38,7 @@ export default function Consultoria() {
     return (
         <>
             <Seo
-                title="Consultoria em Peptídeos — Avaliação Gratuita | Hub Retatrutida"
+                title={`Consultoria em Peptídeos — Avaliação Gratuita | ${SITE.name}`}
                 description="Consultoria educacional em peptídeos e incretinas com avaliação gratuita via WhatsApp. Orientação baseada em ciência, cenário regulatório e direcionamento médico. Sem venda de medicamentos sem registro."
                 path="/consultoria-peptideos"
                 type="website"

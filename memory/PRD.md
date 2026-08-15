@@ -17,26 +17,26 @@ Landing page dark underground neon (azul × preto, detalhes dourados) sobre reta
 - Design: bg #030308, neon #00A3FF/#38BDF8, dourado #D4AF37 exclusivo de CTAs; fontes Unbounded/Manrope/JetBrains Mono; hero com masked line reveal + parallax; marquee editorial; capítulos numerados; infográfico SVG do mecanismo triplo.
 
 ## Deploy no servidor do usuário (WooCommerce, dedicado)
-1. `cd /app/frontend && PUBLIC_URL=/retatrutida yarn build`
-2. Subir o conteúdo de `build/` para a pasta pública `/retatrutida` do servidor.
-3. Nginx (antes das regras do WordPress): `location /retatrutida/ { try_files $uri $uri/ /retatrutida/index.html; }`
-   Apache (.htaccess dentro de /retatrutida): `RewriteEngine On` + `RewriteBase /retatrutida/` + fallback para `index.html`.
-4. No robots.txt da RAIZ do domínio (o do WooCommerce — crawlers só leem a raiz), adicionar: `Sitemap: https://www.suplementosmaisbaratos.com.br/retatrutida/sitemap.xml`
-5. Opcional: copiar llms.txt e llms-full.txt para a raiz do domínio (convenção lê a raiz).
+O app é multi-hub: o mesmo código serve os dois sites. O conteúdo muda por hostname (ou `?hub=retatrutida|ipamorelin` no preview); os arquivos SEO estáticos são trocados pelo script `frontend/scripts/apply-hub.js`.
+1. Retatrutida: `HUB=retatrutida node scripts/apply-hub.js && PUBLIC_URL=/retatrutida yarn build` → subir `build/` para a pasta `/retatrutida` do servidor www.
+2. Ipamorelin: `HUB=ipamorelin node scripts/apply-hub.js && PUBLIC_URL=/ yarn build` → subir `build/` para a raiz do subdomínio ipamorelin.suplementosmaisbaratos.com.br.
+3. Nginx (retatrutida, antes das regras do WordPress): `location /retatrutida/ { try_files $uri $uri/ /retatrutida/index.html; }` — no subdomínio ipamorelin: `try_files $uri $uri/ /index.html;` na raiz.
+4. No robots.txt da RAIZ do WooCommerce, adicionar: `Sitemap: https://www.suplementosmaisbaratos.com.br/retatrutida/sitemap.xml` (no subdomínio ipamorelin, o robots.txt do hub já vale na raiz).
 
 ## Implementado (2026-07-14)
-- Home com hero cinético, stats, marquee, 8 cards-capítulo, infográfico do mecanismo, seção honesta preço/disponibilidade, seção consultoria.
-- 7 páginas-artigo completas com breadcrumbs, aviso regulatório, stat callout, FAQs com schema, backlinks semânticos.
-- Página de consultoria (3 passos, inclui/não inclui, CTA dourado) e FAQ com 9 perguntas + FAQPage schema.
-- Pacote SEO/GEO completo; badge Emergent removido.
-- URLs de produção (canonicals, sitemap, llms) apontando para www.suplementosmaisbaratos.com.br/retatrutida; build configurável por PUBLIC_URL.
-- Versão em espanhol foi iniciada por engano e REVERTIDA a pedido do usuário (não é o público dele).
+- Hub Retatrutida completo: home cinética, 7 artigos, consultoria, FAQ, SEO/GEO (sitemap, robots, llms.txt, llms-full.txt, JSON-LD).
+- Hub Ipamorelin replicado: 10 páginas (o que é, como funciona eixo GHS-R1a→GH→IGF-1, estudos, vs sermorelin, efeitos/WADA S2, preço, onde comprar, consultoria, FAQ), diagrama vetorial próprio, sitemap/robots/llms apontando para ipamorelin.suplementosmaisbaratos.com.br.
+- CTAs dourados com glow pulsante reforçado (anéis + halo + brilho).
+- Melhorias SEO/GEO orgânico: seção "Referências e fontes externas" (PubMed, ClinicalTrials.gov, ANVISA, WADA) em todos os artigos dos dois hubs; datePublished/dateModified no schema MedicalWebPage.
+- Arquitetura multi-hub em `src/hubs/` (retatrutida.js, ipamorelin.js, seletor index.js); build por hub via `scripts/apply-hub.js`.
+- Badge Emergent removido. Versão em espanhol revertida a pedido do usuário.
 
 ## Observações de handoff
 - No preview do Emergent, o proxy injeta um bloco Cloudflare no robots.txt que bloqueia bots de IA; no domínio real isso não se aplica — validar após o deploy.
-- Não há credenciais nem backend; site 100% estático.
+- Preview: hub padrão é ipamorelin; `?hub=retatrutida` alterna (persiste na sessão).
+- Não há credenciais nem backend; sites 100% estáticos.
 
 ## Backlog priorizado
-- P0: deploy no subdiretório (passos acima), validar robots/canonicals no domínio real, submeter sitemap no Google Search Console.
+- P0: deploy dos dois hubs (passos acima), validar robots/canonicals nos domínios reais, submeter sitemaps no Google Search Console.
 - P1: imagem do produto com fundo transparente (usuário vai enviar); OG image dedicada por página.
-- P2: atualizações dos estudos TRIUMPH; prerender/SSG para SEO ainda mais forte.
+- P2: atualizações dos estudos TRIUMPH; prerender/SSG para SEO ainda mais forte; novos hubs (mesmo modelo) para outros peptídeos.

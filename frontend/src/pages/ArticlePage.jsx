@@ -1,11 +1,11 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, Clock3, ShieldAlert, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Clock3, ShieldAlert, ChevronRight, BookOpen } from "lucide-react";
 import { Seo } from "../components/Seo";
 import { Reveal } from "../components/Reveal";
 import { GoldButton } from "../components/GoldButton";
 import { MechanismDiagram } from "../components/MechanismDiagram";
 import { ARTICLES, getArticle } from "../data/articles";
-import { SITE, DISCLAIMER } from "../data/site";
+import { SITE, DRUG, DISCLAIMER } from "../data/site";
 import NotFound from "./NotFound";
 
 const articleJsonLd = (a) => ({
@@ -18,7 +18,9 @@ const articleJsonLd = (a) => ({
             name: a.title,
             description: a.description,
             inLanguage: "pt-BR",
-            about: { "@type": "Drug", name: "Retatrutida", alternateName: "LY3437943" },
+            datePublished: "2026-07-14",
+            dateModified: "2026-07-14",
+            about: { "@type": "Drug", name: DRUG.name, alternateName: DRUG.alt },
             isPartOf: { "@id": `${SITE.domain}/` },
             publisher: {
                 "@type": "Organization",
@@ -29,7 +31,7 @@ const articleJsonLd = (a) => ({
         {
             "@type": "BreadcrumbList",
             itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Retatrutida — Hub", item: `${SITE.domain}/` },
+                { "@type": "ListItem", position: 1, name: `${DRUG.name} — Hub`, item: `${SITE.domain}/` },
                 { "@type": "ListItem", position: 2, name: a.title, item: `${SITE.domain}/${a.slug}` },
             ],
         },
@@ -54,7 +56,7 @@ export default function ArticlePage() {
     return (
         <>
             <Seo
-                title={`${article.title} | Hub Retatrutida`}
+                title={`${article.title} | ${SITE.name}`}
                 description={article.description}
                 path={`/${article.slug}`}
                 jsonLd={articleJsonLd(article)}
@@ -69,7 +71,7 @@ export default function ArticlePage() {
                 <header className="relative mx-auto max-w-4xl px-5 sm:px-8">
                     <nav aria-label="Breadcrumb" className="font-mono-tech flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-gray-500">
                         <Link to="/" data-testid="breadcrumb-home" className="transition-colors duration-300 hover:text-sky-300">
-                            Hub Retatrutida
+                            {SITE.name}
                         </Link>
                         <ChevronRight className="h-3 w-3" />
                         <span className="text-sky-400/80">Cap. {article.chapter}</span>
@@ -97,10 +99,9 @@ export default function ArticlePage() {
                             <div data-testid="regulatory-warning-box" className="mt-10 flex items-start gap-4 rounded-2xl border border-[#D4AF37]/30 bg-[#D4AF37]/5 p-6">
                                 <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-[#D4AF37]" />
                                 <p className="text-sm leading-relaxed text-gray-300">
-                                    <span className="font-bold text-[#E5C158]">Aviso regulatório:</span> a
-                                    retatrutida não possui registro na ANVISA nem aprovação em nenhum país. Esta
-                                    página é informativa e não constitui oferta, indicação de fornecedor ou
-                                    recomendação de uso.
+                                    <span className="font-bold text-[#E5C158]">Aviso regulatório:</span>{" "}
+                                    {DISCLAIMER} Esta página é informativa e não constitui oferta, indicação de
+                                    fornecedor ou recomendação de uso.
                                 </p>
                             </div>
                         </Reveal>
@@ -187,6 +188,32 @@ export default function ArticlePage() {
                         </div>
                     </Reveal>
 
+                    {article.refs && (
+                        <Reveal>
+                            <div data-testid="references-section" className="mt-10 rounded-2xl border border-sky-400/15 bg-sky-400/[0.03] p-7">
+                                <p className="font-mono-tech mb-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-sky-400/80">
+                                    <BookOpen className="h-3.5 w-3.5" /> Referências e fontes externas
+                                </p>
+                                <ul className="space-y-2.5">
+                                    {article.refs.map((r) => (
+                                        <li key={r.url}>
+                                            <a
+                                                href={r.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                data-testid={`ref-link-${r.url.replace(/[^a-z0-9]/gi, "-").slice(0, 40)}`}
+                                                className="group inline-flex items-center gap-2 text-sm text-gray-300 transition-colors duration-300 hover:text-sky-300"
+                                            >
+                                                {r.label}
+                                                <ArrowUpRight className="h-3.5 w-3.5 text-sky-400 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </Reveal>
+                    )}
+
                     <Reveal>
                         <div className="relative mt-14 overflow-hidden rounded-3xl border border-[#D4AF37]/25 bg-gradient-to-br from-[#D4AF37]/10 via-[#0a0a10] to-[#0a0a10] p-8 sm:p-12">
                             <p className="font-mono-tech text-[10px] uppercase tracking-[0.3em] text-[#D4AF37]">
@@ -197,8 +224,8 @@ export default function ArticlePage() {
                             </h2>
                             <p className="mt-4 max-w-xl text-sm leading-relaxed text-gray-400">
                                 Avaliação educacional gratuita pelo WhatsApp com a equipe da {SITE.brand}. Sem
-                                venda de medicamentos sem registro — apenas orientação técnica e direcionamento
-                legítimo.
+                                venda de substâncias sem registro — apenas orientação técnica e direcionamento
+                                legítimo.
                             </p>
                             <GoldButton label="Agendar avaliação gratuita" testid="article-cta-whatsapp" className="mt-7" pulse />
                         </div>
@@ -233,11 +260,11 @@ export default function ArticlePage() {
                             <Link
                                 to="/"
                                 data-testid="back-to-hub-link"
-                                title="retatrutida"
+                                title={DRUG.name.toLowerCase()}
                                 className="group mt-8 inline-flex items-center gap-2 font-mono-tech text-[11px] uppercase tracking-[0.2em] text-gray-400 transition-colors duration-300 hover:text-sky-300"
                             >
                                 <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
-                                Voltar ao hub central sobre retatrutida
+                                Voltar ao hub central sobre {DRUG.name.toLowerCase()}
                             </Link>
                         </nav>
                     </Reveal>

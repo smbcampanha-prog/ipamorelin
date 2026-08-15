@@ -1,17 +1,4 @@
-const TERMS = [
-    "GLP-1",
-    "GIP",
-    "GLUCAGONA",
-    "AGONISTA TRIPLO",
-    "LY3437943",
-    "NEJM 2023",
-    "TRIUMPH-4",
-    "FASE 3",
-    "-24,2% EM 48 SEMANAS",
-    "PEPTÍDEO EXPERIMENTAL",
-    "SEM REGISTRO ANVISA",
-    "CIÊNCIA, NÃO HYPE",
-];
+import { MARQUEE_TERMS as TERMS } from "../data/site";
 
 export const Marquee = () => (
     <div

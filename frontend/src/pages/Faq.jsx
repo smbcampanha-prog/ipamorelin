@@ -2,46 +2,7 @@ import { ChevronRight } from "lucide-react";
 import { Seo } from "../components/Seo";
 import { Reveal, MaskedLine, FadeIn } from "../components/Reveal";
 import { GoldButton } from "../components/GoldButton";
-import { SITE } from "../data/site";
-
-const FAQS = [
-    {
-        q: "A retatrutida é aprovada no Brasil?",
-        a: "Não. A retatrutida não possui registro na ANVISA nem aprovação em nenhum país. Ela segue em fase 3 de estudos clínicos (programa TRIUMPH, da Eli Lilly). Qualquer produto vendido com esse nome no Brasil é irregular.",
-    },
-    {
-        q: "Retatrutida: como tomar?",
-        a: "Não existe orientação de uso aprovada, porque a molécula não tem registro. Nos protocolos de pesquisa, a administração é subcutânea, uma vez por semana, com titulação progressiva de dose sob supervisão médica integral. Fora de ensaios clínicos, não há posologia segura definida — e produtos do mercado informal não têm dose verificada.",
-    },
-    {
-        q: "Qual é o preço da retatrutida?",
-        a: "Não existe preço oficial: sem registro regulatório, nenhum laboratório pode precificar ou vender a molécula. Anúncios com valores em reais referem-se a produtos irregulares, sobre os quais a ANVISA já emitiu alertas. Detalhamos isso no capítulo sobre preço.",
-    },
-    {
-        q: "Onde comprar retatrutida com segurança?",
-        a: "Não existe canal legal de venda — no Brasil e em nenhum país. Os caminhos legítimos hoje são a participação em ensaios clínicos (listados no ClinicalTrials.gov) e as alternativas já aprovadas pela ANVISA, como a tirzepatida (Mounjaro), sempre com prescrição médica.",
-    },
-    {
-        q: "Retatrutida ou Mounjaro: qual é melhor?",
-        a: "São estágios diferentes. Mounjaro (tirzepatida) é um agonista duplo aprovado e disponível legalmente; a retatrutida é um agonista triplo experimental, com reduções de peso maiores nos estudos até agora, mas sem registro e sem segurança de longo prazo estabelecida. Hoje, a única opção real entre as duas é a tirzepatida, com acompanhamento médico.",
-    },
-    {
-        q: "Quais são os efeitos colaterais da retatrutida?",
-        a: "Nos ensaios, os mais frequentes foram gastrointestinais (náusea, vômito, diarreia, constipação), geralmente leves a moderados e concentrados na fase de titulação. Também foram observados aumento transitório da frequência cardíaca e, no TRIUMPH-4, relatos de disestesia. O perfil definitivo só será conhecido ao fim da fase 3.",
-    },
-    {
-        q: "Quando a retatrutida chega ao Brasil?",
-        a: "Não há data oficial. A Eli Lilly ainda conduz o programa de fase 3 e não anunciou cronograma de submissão às agências regulatórias. Qualquer previsão de lançamento é especulativa até a conclusão e publicação desses estudos.",
-    },
-    {
-        q: "O que é a consultoria em peptídeos?",
-        a: `É um serviço educacional da ${SITE.brand}: uma avaliação gratuita pelo WhatsApp (${SITE.whatsappDisplay}) para entender seu perfil, esclarecer dúvidas com base na literatura científica e mapear os caminhos legítimos para seus objetivos. Não vendemos medicamentos sem registro.`,
-    },
-    {
-        q: "A consultoria substitui uma consulta médica?",
-        a: "Não, jamais. A consultoria é educacional: organizamos informação técnica e cenário regulatório. Diagnóstico, prescrição e tratamento são atribuições exclusivas de profissionais de saúde habilitados.",
-    },
-];
+import { FAQ_PAGE, FAQS } from "../data/site";
 
 const faqJsonLd = {
     "@context": "https://schema.org",
@@ -57,8 +18,8 @@ export default function Faq() {
     return (
         <>
             <Seo
-                title="FAQ Retatrutida — Perguntas Frequentes Respondidas com Ciência"
-                description="Retatrutida é aprovada? Como tomar? Qual o preço? Onde comprar? Retatrutida ou Mounjaro? Respostas diretas e honestas para as perguntas mais buscadas sobre a molécula."
+                title={FAQ_PAGE.seoTitle}
+                description={FAQ_PAGE.seoDesc}
                 path="/faq"
                 jsonLd={faqJsonLd}
             />
@@ -69,20 +30,17 @@ export default function Faq() {
                 <div className="relative mx-auto max-w-4xl px-5 pb-24 sm:px-8">
                     <FadeIn>
                         <p className="font-mono-tech text-[10px] uppercase tracking-[0.35em] text-sky-400/80">
-                            Perguntas frequentes · respostas sem filtro
+                            {FAQ_PAGE.kicker}
                         </p>
                     </FadeIn>
                     <h1 className="font-display mt-5 text-3xl font-black leading-[1.08] text-white sm:text-5xl">
-                        <MaskedLine delay={0.15}>O QUE O BRASIL</MaskedLine>
+                        <MaskedLine delay={0.15}>{FAQ_PAGE.h1a}</MaskedLine>
                         <MaskedLine delay={0.3}>
-                            PERGUNTA SOBRE <span className="text-neon">RETATRUTIDA</span>
+                            {FAQ_PAGE.h1b} <span className="text-neon">{FAQ_PAGE.h1neon}</span>
                         </MaskedLine>
                     </h1>
                     <FadeIn delay={0.5}>
-                        <p className="mt-6 max-w-2xl text-base leading-relaxed text-gray-400">
-                            Reunimos as dúvidas mais buscadas no Google e respondemos com base nos estudos e no
-                            cenário regulatório real — inclusive quando a resposta não é a que você esperava.
-                        </p>
+                        <p className="mt-6 max-w-2xl text-base leading-relaxed text-gray-400">{FAQ_PAGE.sub}</p>
                     </FadeIn>
 
                     <div className="mt-12 space-y-4">

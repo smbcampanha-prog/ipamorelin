@@ -12,7 +12,7 @@ export const Footer = () => (
                             <Atom className="h-4 w-4 text-sky-400" />
                         </span>
                         <span className="font-display text-sm font-bold text-white">
-                            RETATRUTIDA<span className="text-neon">.HUB</span>
+                            {SITE.logo}<span className="text-neon">.HUB</span>
                         </span>
                     </div>
                     <p className="mt-5 max-w-sm text-sm leading-relaxed text-gray-400">
@@ -70,7 +70,7 @@ export const Footer = () => (
 
             <div className="mt-14 flex flex-col gap-3 border-t border-white/5 pt-7 sm:flex-row sm:items-center sm:justify-between">
                 <p className="font-mono-tech text-[10px] uppercase tracking-[0.25em] text-gray-600">
-                    © 2026 {SITE.brand} — Hub Retatrutida
+                    © 2026 {SITE.brand} — {SITE.name}
                 </p>
                 <p className="font-mono-tech text-[10px] uppercase tracking-[0.25em] text-gray-600">
                     Conteúdo educacional · Não substitui consulta médica

@@ -7,14 +7,7 @@ import { Marquee } from "../components/Marquee";
 import { GoldButton } from "../components/GoldButton";
 import { MechanismDiagram } from "../components/MechanismDiagram";
 import { ARTICLES } from "../data/articles";
-import { SITE } from "../data/site";
-
-const STATS = [
-    { value: "−24,2%", label: "peso médio na fase 2 (48 sem, 12 mg)" },
-    { value: "3", label: "receptores ativados: GLP-1 · GIP · GCG" },
-    { value: "−28,7%", label: "no TRIUMPH-4, fase 3 (68 semanas)" },
-    { value: "0", label: "registros na ANVISA até hoje" },
-];
+import { SITE, DRUG, HERO, STATS, MECH, MARKET, HOME_SEO } from "../data/site";
 
 const homeJsonLd = {
     "@context": "https://schema.org",
@@ -22,7 +15,6 @@ const homeJsonLd = {
         {
             "@type": "WebSite",
             name: SITE.name,
-            alternateName: "Retatrutida Hub",
             url: `${SITE.domain}/`,
             inLanguage: "pt-BR",
             publisher: { "@id": `${SITE.domain}/#org` },
@@ -43,9 +35,11 @@ const homeJsonLd = {
             "@type": "MedicalWebPage",
             "@id": `${SITE.domain}/#webpage`,
             url: `${SITE.domain}/`,
-            name: "Retatrutida — Hub Científico e Consultoria em Peptídeos",
+            name: HOME_SEO.title,
             inLanguage: "pt-BR",
-            about: { "@type": "Drug", name: "Retatrutida", alternateName: "LY3437943" },
+            datePublished: "2026-07-14",
+            dateModified: "2026-07-14",
+            about: { "@type": "Drug", name: DRUG.name, alternateName: DRUG.alt },
             isPartOf: { "@id": `${SITE.domain}/` },
         },
     ],
@@ -72,23 +66,23 @@ const Hero = () => {
                 <FadeIn delay={0.15}>
                     <p className="font-mono-tech mb-6 flex items-center gap-3 text-[10px] uppercase tracking-[0.35em] text-sky-400 sm:text-xs">
                         <span className="inline-block h-px w-10 bg-sky-400/70" />
-                        Hub científico · Peptídeos & incretinas
+                        {HERO.kicker}
                     </p>
                 </FadeIn>
 
                 <h1 className="font-display max-w-5xl text-4xl font-black leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-                    <MaskedLine delay={0.25}>RETATRUTIDA:</MaskedLine>
+                    <MaskedLine delay={0.25}>{HERO.l1}</MaskedLine>
                     <MaskedLine delay={0.4}>
-                        <span className="text-neon">CIÊNCIA,</span>
+                        <span className="text-neon">{HERO.l2}</span>
                     </MaskedLine>
-                    <MaskedLine delay={0.55}>NÃO HYPE.</MaskedLine>
+                    <MaskedLine delay={0.55}>{HERO.l3}</MaskedLine>
                 </h1>
 
                 <FadeIn delay={0.85}>
                     <p className="mt-7 max-w-2xl text-base leading-relaxed text-gray-300 sm:text-lg">
-                        O guia técnico independente sobre o agonista triplo{" "}
-                        <span className="font-mono-tech text-sky-300">GLP-1 · GIP · Glucagona</span> — mecanismo,
-                        estudos TRIUMPH, segurança e o status regulatório real no Brasil.
+                        {HERO.subPre}{" "}
+                        <span className="font-mono-tech text-sky-300">{HERO.subMono}</span>{" "}
+                        {HERO.subPos}
                     </p>
                     <div className="mt-9 flex flex-wrap items-center gap-4">
                         <GoldButton label="Avaliação gratuita no WhatsApp" testid="hero-cta-whatsapp" pulse />
@@ -181,56 +175,54 @@ const Chapters = () => (
     </section>
 );
 
-const Mechanism = () => (
-    <section data-testid="mechanism-section" className="relative border-t border-white/5 bg-[#04040a] py-24 sm:py-32">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1.1fr]">
-            <div>
-                <Reveal>
-                    <p className="font-mono-tech mb-4 text-[10px] uppercase tracking-[0.35em] text-sky-400/80">
-                        Infográfico · Mecanismo
-                    </p>
-                    <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
-                        Três receptores. <br />
-                        <span className="text-neon">Uma molécula.</span>
-                    </h2>
-                    <p className="mt-6 max-w-lg text-base leading-relaxed text-gray-400">
-                        O GLP-1 freia o apetite. O GIP modula o tecido adiposo. A glucagona acelera o gasto
-                        energético. A retatrutida é a primeira molécula em fase avançada a reunir os três eixos —
-                        a hipótese por trás das maiores perdas de peso já vistas em ensaios com incretinas.
-                    </p>
-                </Reveal>
-                <Reveal delay={0.15}>
-                    <ul className="mt-8 space-y-4">
-                        {[
-                            { icon: Activity, t: "GLP-1", d: "Saciedade central, esvaziamento gástrico e insulina glicose-dependente" },
-                            { icon: FlaskConical, t: "GIP", d: "Metabolismo do tecido adiposo e sensibilidade à insulina" },
-                            { icon: Microscope, t: "Glucagona", d: "Gasto energético e oxidação de gordura hepática" },
-                        ].map((it) => (
-                            <li key={it.t} className="flex items-start gap-4">
-                                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-sky-400/25 bg-sky-400/5">
-                                    <it.icon className="h-4 w-4 text-sky-400" />
-                                </span>
-                                <div>
-                                    <p className="font-mono-tech text-xs font-bold tracking-[0.15em] text-white">{it.t}</p>
-                                    <p className="mt-1 text-sm text-gray-400">{it.d}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                    <Link
-                        to="/como-funciona"
-                        data-testid="mechanism-read-more"
-                        className="group mt-8 inline-flex items-center gap-2 font-mono-tech text-[11px] uppercase tracking-[0.2em] text-sky-300 transition-colors duration-300 hover:text-sky-200"
-                    >
-                        Mecanismo completo no Cap. 02
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </Link>
-                </Reveal>
+const Mechanism = () => {
+    const icons = [Activity, FlaskConical, Microscope];
+    return (
+        <section data-testid="mechanism-section" className="relative border-t border-white/5 bg-[#04040a] py-24 sm:py-32">
+            <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1.1fr]">
+                <div>
+                    <Reveal>
+                        <p className="font-mono-tech mb-4 text-[10px] uppercase tracking-[0.35em] text-sky-400/80">
+                            {MECH.kicker}
+                        </p>
+                        <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
+                            {MECH.h2a} <br />
+                            <span className="text-neon">{MECH.h2b}</span>
+                        </h2>
+                        <p className="mt-6 max-w-lg text-base leading-relaxed text-gray-400">{MECH.p}</p>
+                    </Reveal>
+                    <Reveal delay={0.15}>
+                        <ul className="mt-8 space-y-4">
+                            {MECH.items.map((it, i) => {
+                                const Icon = icons[i % icons.length];
+                                return (
+                                    <li key={it.t} className="flex items-start gap-4">
+                                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-sky-400/25 bg-sky-400/5">
+                                            <Icon className="h-4 w-4 text-sky-400" />
+                                        </span>
+                                        <div>
+                                            <p className="font-mono-tech text-xs font-bold tracking-[0.15em] text-white">{it.t}</p>
+                                            <p className="mt-1 text-sm text-gray-400">{it.d}</p>
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                        <Link
+                            to={MECH.moreTo}
+                            data-testid="mechanism-read-more"
+                            className="group mt-8 inline-flex items-center gap-2 font-mono-tech text-[11px] uppercase tracking-[0.2em] text-sky-300 transition-colors duration-300 hover:text-sky-200"
+                        >
+                            {MECH.moreLabel}
+                            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </Link>
+                    </Reveal>
+                </div>
+                <MechanismDiagram />
             </div>
-            <MechanismDiagram />
-        </div>
-    </section>
-);
+        </section>
+    );
+};
 
 const HonestMarket = () => (
     <section data-testid="market-truth-section" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
@@ -243,34 +235,24 @@ const HonestMarket = () => (
                             <Ban className="h-3.5 w-3.5" /> Compromisso editorial
                         </p>
                         <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
-                            Procurando preço ou onde comprar? <span className="text-neon">Leia isto primeiro.</span>
+                            {MARKET.h2a} <span className="text-neon">{MARKET.h2b}</span>
                         </h2>
-                        <p className="mt-6 max-w-xl text-base leading-relaxed text-gray-400">
-                            Não existe preço oficial nem canal legal de venda da retatrutida — no Brasil e em
-                            nenhum país. As ofertas que circulam online são irregulares e já foram alvo de alertas
-                            da ANVISA. Preferimos perder o clique a perder a honestidade.
-                        </p>
+                        <p className="mt-6 max-w-xl text-base leading-relaxed text-gray-400">{MARKET.p}</p>
                     </Reveal>
                     <Reveal delay={0.15}>
                         <div className="mt-8 flex flex-wrap gap-4">
-                            <Link
-                                to="/retatrutida-preco"
-                                data-testid="market-link-preco"
-                                title="retatrutida preço"
-                                className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 font-mono-tech text-[10px] font-bold uppercase tracking-[0.18em] text-gray-200 transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-white/10"
-                            >
-                                Por que não há preço oficial
-                                <ArrowUpRight className="h-3.5 w-3.5 text-sky-400" />
-                            </Link>
-                            <Link
-                                to="/onde-comprar-retatrutida"
-                                data-testid="market-link-onde-comprar"
-                                title="retatrutida onde comprar"
-                                className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 font-mono-tech text-[10px] font-bold uppercase tracking-[0.18em] text-gray-200 transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-white/10"
-                            >
-                                O status real de disponibilidade
-                                <ArrowUpRight className="h-3.5 w-3.5 text-sky-400" />
-                            </Link>
+                            {[MARKET.l1, MARKET.l2].map((l) => (
+                                <Link
+                                    key={l.to}
+                                    to={l.to}
+                                    data-testid={`market-link-${l.to.slice(1)}`}
+                                    title={l.title}
+                                    className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 font-mono-tech text-[10px] font-bold uppercase tracking-[0.18em] text-gray-200 transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-white/10"
+                                >
+                                    {l.label}
+                                    <ArrowUpRight className="h-3.5 w-3.5 text-sky-400" />
+                                </Link>
+                            ))}
                         </div>
                     </Reveal>
                 </div>
@@ -283,7 +265,7 @@ const HonestMarket = () => (
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#030308]/85 to-transparent" />
                         <p className="font-mono-tech absolute bottom-4 left-4 right-4 text-[9px] uppercase leading-relaxed tracking-[0.2em] text-sky-300/80">
-                            FIG. 02 — Pesquisa sob escudo: ciência precisa de regulação
+                            {MARKET.fig}
                         </p>
                     </div>
                 </Reveal>
@@ -341,8 +323,8 @@ export default function Home() {
     return (
         <>
             <Seo
-                title="Retatrutida — Hub Científico e Consultoria em Peptídeos"
-                description="Guia técnico independente sobre retatrutida: mecanismo triplo agonista GLP-1, GIP e glucagona, estudos TRIUMPH, segurança e status na ANVISA. Avaliação educacional gratuita."
+                title={HOME_SEO.title}
+                description={HOME_SEO.desc}
                 path="/"
                 type="website"
                 jsonLd={homeJsonLd}

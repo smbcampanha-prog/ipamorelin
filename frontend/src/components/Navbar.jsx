@@ -33,7 +33,7 @@ export const Navbar = () => {
                     </span>
                     <span className="leading-none">
                         <span className="font-display block text-[13px] font-bold tracking-wide text-white">
-                            RETATRUTIDA<span className="text-neon">.HUB</span>
+                            {SITE.logo}<span className="text-neon">.HUB</span>
                         </span>
                         <span className="font-mono-tech mt-1 block text-[8px] uppercase tracking-[0.28em] text-gray-500">
                             {SITE.brand}
